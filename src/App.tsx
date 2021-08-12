@@ -1,8 +1,13 @@
+import AppRouter from './AppRouter';
+import Header from './components/common/Header';
+
 function App() {
   return (
-    <div>
-      <h1>Fvaly</h1>
-    </div>
+    <>
+      <AppRouter>
+        <Header />
+      </AppRouter>
+    </>
   );
 }
 
