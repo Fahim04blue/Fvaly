@@ -6,6 +6,11 @@ import { IProduct } from 'type';
 
 const Checkout = () => {
   const cart: IProduct[] = useSelector((state: AppState) => state.cart);
+
+  const totalCost = cart.reduce(
+    (prevPrice, currentPrice) => prevPrice + currentPrice.price,
+    0
+  );
   return (
     <div className="my-3">
       <Container>
@@ -14,7 +19,7 @@ const Checkout = () => {
             <CartItem key={item._id} item={item} />
           ))}
           <div className="mt-5 d-flex flex-column align-items-end border-top pt-5">
-            <h2 className="mb-4">Total : ৳ 2343</h2>
+            <h2 className="mb-4">Total : ৳ {totalCost}</h2>
             <button className="btn btn-lg btn-primary">Confirm Checkout</button>
           </div>
         </div>

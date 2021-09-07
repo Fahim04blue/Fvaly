@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React, { lazy, Suspense } from 'react';
+import Login from 'pages/Login/Login';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const Help = lazy(() => import('./pages/Help/Help'));
@@ -15,6 +16,7 @@ const AppRouter: React.FC = ({ children }) => {
       <Suspense fallback={<>Loading...</>}>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
           <Route path="/help" component={Help} />
           <Route path="/product/:id" component={ProductDetails} />
           <Route path="/checkout/" component={Checkout} />

@@ -7,20 +7,22 @@ import {
   Navbar,
 } from 'react-bootstrap';
 import { FiPhoneCall, FiShoppingBag } from 'react-icons/fi';
-import { FaRegEnvelope } from 'react-icons/fa';
+import { FaRegEnvelope, FaSignOutAlt } from 'react-icons/fa';
 import { BsPhone } from 'react-icons/bs';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { BiUser } from 'react-icons/bi';
 import logo from 'assets/images/fvaly.png';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { IProduct } from 'type';
 import { AppState } from 'redux/reducers/rootReducer';
+import { Link } from 'react-router-dom';
+import { logout } from 'redux/action creators/authActionCreator';
 
 const Header = () => {
   const history = useHistory();
-
-  const cart: IProduct[] = useSelector((state: AppState) => state.cart);
+  const dispatch = useDispatch();
+  const cart = useSelector((state: AppState) => state.cart);
+  const { data } = useSelector((state: AppState) => state.auth);
 
   return (
     <div className="header__component">
@@ -68,9 +70,17 @@ const Header = () => {
                 <FiShoppingBag onClick={() => history.push('/checkout')} />
                 <span className="badge bg-primary">{cart.length}</span>
               </li>
+
               <li>
-                <BiUser />
+                <Link to="/login">
+                  <BiUser />
+                </Link>
               </li>
+              {data && (
+                <li className="btn">
+                  <FaSignOutAlt onClick={() => dispatch(logout())} />
+                </li>
+              )}
             </ul>
           </div>
         </Container>

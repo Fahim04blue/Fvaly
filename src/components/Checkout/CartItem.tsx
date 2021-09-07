@@ -1,7 +1,7 @@
 import { Col, Row } from 'react-bootstrap';
 import { FaRegTimesCircle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from 'redux/actions/cartAction';
+import { removeFromCart } from 'redux/action creators/cartActionCreator';
 import { IProduct } from 'type';
 import imageUrlParser from 'utils/imageUrlParser';
 
